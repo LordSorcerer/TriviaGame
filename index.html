@@ -15,12 +15,13 @@
     <style type="text/css">
     body {
         background-color: gray;
+        text-align: center;
     }
     
     .wrapper {
         width: 960px;
         margin: 0 auto;
-        background-color: green;
+        background-color: darkblue;
     }
     
     .display {
@@ -34,13 +35,16 @@
         padding: 10px;
     }
     
-    .btn {
-        width: 10%;
+    h1 {
+        color: yellow;
+    }
+    
+    .respBtn {
+        width: 25%;
     }
     
     .resp {
         width: 25%;
-        height: 25%;
         float: left;
         margin: auto;
     }
@@ -51,7 +55,10 @@
     
     #displayTimer {}
     
-    #displayAnswers {}
+    #displayResponses {
+        height: 60px;
+        clear: both;
+    }
     
     #displayGraphic {
         width: 25%;
@@ -63,40 +70,109 @@
 
 <body>
     <main class="wrapper">
-        <section id="displayTimer" class="display">Time Remaining: </section>
+        <header>
+            <h1>.-[Riddlemaster's Challenge]-.</h1></header>
+        <section id="displayTimer" class="display">Time Remaining -> 15</section>
         <section id="displayQuestion" class="display">Question</section>
         <section id="displayResponses" class="display">
-            <div id="respA" class=resp>
-                <button id=respButtonA class="btn btn-primary" value="A">A.</button>
-                <span id=respTextA>Answer A.</span>
+            <div class=resp>
+                <button id="respA" class="btn btn-primary respBtn" value="A">A.</button>
             </div>
-            <div id="respB" class=resp>
-                <button id=respButtonB class="btn btn-primary" value="B">B.</button>
-                <span id=respTextB>Answer B.</span>
+            <div class=resp>
+                <button id="respB" class="btn btn-primary respBtn" value="B">B.</button>
             </div>
-            <div id="respC" class=resp>
-                <button id=respButtonC class="btn btn-primary" value="C">C.</button>
-                <span id=respTextC>Answer C.</span>
+            <div class=resp>
+                <button id="respC" class="btn btn-primary respBtn" value="C">C.</button>
             </div>
-            <div id="respD" class=resp>
-                <button id=respButtonD class="btn btn-primary" value="D">D.</button>
-                <span id=respTextD>Answer D.</span>
+            <div class=resp>
+                <button id="respD" class="btn btn-primary respBtn" value="D">D.</button>
             </div>
         </section>
         <img id="displayGraphic" class="display" src="./whaleTree.jpg"></img>
     </main>
     <script type="text/javascript">
-    var triviaGame = function(timer) {
-        var htmlDisplayTimer = $("#displayTimer"),
-            htmlDisplayQuestion = $("#displayQuestion"),
-            htmlDisplayResponses = $("#displayResponses"),
-            htmlDisplayQuestion = $("#displayQuestion"),
-            respA = $("#respA"),
-            respB = $("#respB"),
-            respC = $("#respC"),
-            respD = $("#respD");
-        console.log(this.respA);
-    }
+    var triviaGame = {
+        htmlDisplayTimer: $("#displayTimer"),
+        htmlDisplayQuestion: $("#displayQuestion"),
+        htmlDisplayResponses: $("#displayResponses"),
+        htmlDisplayQuestion: $("#displayQuestion"),
+        htmlRespA: $("#respA"),
+        htmlRespB: $("#respB"),
+        htmlRespC: $("#respC"),
+        htmlRespD: $("#respD"),
+        timer: 15,
+        timerMax: 15,
+        handleTimer: 0,
+        answerCorrect: 0,
+        answerIncorrect: 0,
+        questionNum: 1,
+        questionList: [{
+            Q: "What is 1 + 1",
+            A: "Giant zongo",
+            B: "2",
+            C: "3",
+            D: "4",
+            answer: "A"
+        }, {
+            Q: "What is 2 + 2?",
+            A: "1",
+            B: "2",
+            C: "3",
+            D: "4",
+            answer: "D"
+        }],
+
+        /* console.log(respA.children("#respButtonA"));
+        console.log(respA.children([0]));
+        console.log(respA.children(1));*/
+
+        startTimer: function() {
+            this.handleTimer = setInterval(this.runTimer.bind(this), 1000);
+        },
+
+        stopTimer: function() {
+            clearInterval(this.handleTimer);
+        },
+
+        runTimer: function() {
+            if (this.timer <= 0) {
+                this.stopTimer;
+            };
+
+            this.timer--;
+            this.htmlDisplayTimer.text("Time Remaining -> " + this.timer);
+        },
+
+        loadQuestion: function() {
+            this.htmlDisplayQuestion.text(this.questionList[this.questionNum].Q);
+            this.htmlRespA.text("A. " + this.questionList[this.questionNum].A);
+            this.htmlRespB.text("B. " + this.questionList[this.questionNum].B);
+            this.htmlRespC.text("C. " + this.questionList[this.questionNum].C);
+            this.htmlRespD.text("D. " + this.questionList[this.questionNum].D);
+            this.startTimer;
+        },
+
+        runGame: function() {
+            this.loadQuestion;
+            this.startTimer;
+        },
+
+    };
+
+    triviaGame.runGame();
+
+
+    //Event handlers
+    $(".respBtn").on("click", function() {
+        if (this.value == triviaGame.questionList[triviaGame.questionNum].answer) {
+            triviaGame.answerCorrect++;
+            triviaGame.htmlDisplayQuestion.text("Good job!");
+        } else {
+            triviaGame.answerIncorrect++;
+            triviaGame.htmlDisplayQuestion.text("Wrong answer.  Sorry.");
+        };
+        triviaGame.stopTimer();
+    });
     </script>
 </body>
 
