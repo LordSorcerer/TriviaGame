@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trivia Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Milonga" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+    body {
+        background-color: gray;
+    }
+    
+    .wrapper {
+        width: 960px;
+        margin: 0 auto;
+        background-color: green;
+    }
+    
+    .display {
+        font-family: Milonga;
+        font-size: 20px;
+        color: white;
+        background-color: blue;
+        text-align: center;
+        margin: 0px 0px 30px 0px;
+        border: lightblue 3px dotted;
+        padding: 10px;
+    }
+    
+    .btn {
+        width: 10%;
+    }
+    
+    .resp {
+        width: 25%;
+        height: 25%;
+        float: left;
+        margin: auto;
+    }
+    
+    #displayQuestion {
+        height: 150px;
+    }
+    
+    #displayTimer {}
+    
+    #displayAnswers {}
+    
+    #displayGraphic {
+        width: 25%;
+        display: block;
+        margin: 25px auto;
+    }
+    </style>
+</head>
+
+<body>
+    <main class="wrapper">
+        <section id="displayTimer" class="display">Time Remaining: </section>
+        <section id="displayQuestion" class="display">Question</section>
+        <section id="displayResponses" class="display">
+            <div id="respA" class=resp>
+                <button id=respButtonA class="btn btn-primary" value="A">A.</button>
+                <span id=respTextA>Answer A.</span>
+            </div>
+            <div id="respB" class=resp>
+                <button id=respButtonB class="btn btn-primary" value="B">B.</button>
+                <span id=respTextB>Answer B.</span>
+            </div>
+            <div id="respC" class=resp>
+                <button id=respButtonC class="btn btn-primary" value="C">C.</button>
+                <span id=respTextC>Answer C.</span>
+            </div>
+            <div id="respD" class=resp>
+                <button id=respButtonD class="btn btn-primary" value="D">D.</button>
+                <span id=respTextD>Answer D.</span>
+            </div>
+        </section>
+        <img id="displayGraphic" class="display" src="./whaleTree.jpg"></img>
+    </main>
+    <script type="text/javascript">
+    var triviaGame = function(timer) {
+        var htmlDisplayTimer = $("#displayTimer"),
+            htmlDisplayQuestion = $("#displayQuestion"),
+            htmlDisplayResponses = $("#displayResponses"),
+            htmlDisplayQuestion = $("#displayQuestion"),
+            respA = $("#respA"),
+            respB = $("#respB"),
+            respC = $("#respC"),
+            respD = $("#respD");
+        console.log(this.respA);
+    }
+    </script>
+</body>
+
+</html>
