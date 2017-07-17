@@ -3,6 +3,7 @@ var triviaGame = {
     htmlDisplayQuestion: $("#displayQuestion"),
     htmlDisplayResponses: $("#displayResponses"),
     htmlDisplayQuestion: $("#displayQuestion"),
+    htmlDisplayAnswer: $("#displayAnswer"),
     htmlStartBtn: $("#startBtn"),
     htmlRespA: $("#respA"),
     htmlRespB: $("#respB"),
@@ -41,7 +42,7 @@ var triviaGame = {
         C: "Squirrel",
         D: "None",
         answer: "D",
-        text: "None of them, because you can’t get a banana from a coconut tree."
+        text: "None of them, because bananas do not grow from coconut trees."
     }, {
         Q: "Which eight-letter word still remains a word after removing each letter from it?",
         A: "Question",
@@ -131,7 +132,7 @@ var triviaGame = {
         };
         this.stopTimer();
         //Displays answer - currently non-functional
-        this.htmlDisplayQuestion.text(this.questionList[this.questionNum].text);
+        this.htmlDisplayAnswer.text("(" + this.questionList[this.questionNum].text + ")");
         //Sets up for next question
         this.questionNum++;
         this.gameRun();
