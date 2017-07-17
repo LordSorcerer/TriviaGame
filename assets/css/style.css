@@ -4,6 +4,7 @@
         text-align: center;
         background-image: url('../graphics/bluestar.gif');
         background-size: 100% 100%;
+        background-repeat: no-repeat;
     }
     
     .wrapper {

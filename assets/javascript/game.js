@@ -1,4 +1,3 @@
-
 var triviaGame = {
     htmlDisplayTimer: $("#displayTimer"),
     htmlDisplayQuestion: $("#displayQuestion"),
@@ -9,8 +8,8 @@ var triviaGame = {
     htmlRespB: $("#respB"),
     htmlRespC: $("#respC"),
     htmlRespD: $("#respD"),
-    timer: 20,
-    timerMax: 20,
+    timer: 0,
+    timerMax: 30,
     handleTimer: 0,
     answerCorrect: 0,
     answerIncorrect: 0,
@@ -26,7 +25,7 @@ var triviaGame = {
         C: "nut",
         D: "peach",
         answer: "B",
-        text: "Corn on the cob, because you throw away the husk, cook and eat the kernels, and throw away the cob."
+        text: "Corn, because you throw away the husk, cook and eat the kernels, and throw away the cob."
     }, {
         Q: "A house has 4 walls. All of the walls are facing south and a bear is circling the house. What color is the bear?",
         A: "black",
@@ -67,12 +66,27 @@ var triviaGame = {
         clearInterval(this.handleTimer);
     },
 
+    /*   victoryTimer: function() {
+           this.htmlDisplayTimer.text("Time Remaining -> " + this.timer);
+           this.handleTimer = setInterval(function() {
+               this.timer--;
+               this.htmlDisplayTimer.text("Time Remaining -> " + this.timer);
+               if (this.timer <= 0) {
+                   console.log("Timer below 0");
+                   this.stopTimer();
+                   this.gameRun();
+               };
+           }, 1000);
+
+       },*/
+
     runTimer: function() {
         this.timer--;
         this.htmlDisplayTimer.text("Time Remaining -> " + this.timer);
         if (this.timer <= 0) {
             console.log("Timer below 0");
             this.stopTimer();
+            this.questionNum++;
             this.gameRun();
         };
 
@@ -89,7 +103,7 @@ var triviaGame = {
             this.startTimer();
         } else {
             this.htmlDisplayTimer.text("Time Remaining ->");
-            this.htmlDisplayQuestion.text("Well, that's the whole quiz.  Let's see how you did... Amongst your answers, " + this.answerCorrect + " were right and " + this.answerIncorrect + " were wrong.  Click the title button to play again.");
+            this.htmlDisplayQuestion.text("Well, that's the whole quiz.  Let's see how you did... Amongst your answers, there were " + this.answerCorrect + " right and " + this.answerIncorrect + " wrong.");
         }
     },
     //Yes, it contains just one function but I had planned to make it do other things.  Placeholder.
@@ -104,20 +118,19 @@ var triviaGame = {
         this.answerCorrect = 0;
         this.answerIncorrect = 0;
         this.questionNum = 0;
-        this.htmlStartBtn.text("_.~[Reset the Riddlemaster's Challenge]~._");
         this.stopTimer();
         this.gameRun();
     },
 
     parseInput: function(val) {
         //This function currently only takes the value of the response button clicked and returns it to the object for processing but it could include other types of input, creating a centralized function to deal with all input from outside the object.  I.E.: "I AM THE GATEKEEPER!!! FEAR ME!!! MWAAAHAHAHAHAHAHAHAAAA!"
-
         if (val == this.questionList[this.questionNum].answer) {
             this.answerCorrect++;
         } else {
             this.answerIncorrect++;
         };
         this.stopTimer();
+        //Displays answer - currently non-functional
         this.htmlDisplayQuestion.text(this.questionList[this.questionNum].text);
         //Sets up for next question
         this.questionNum++;
