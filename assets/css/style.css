@@ -1,0 +1,59 @@
+    
+    body {
+        background-color: black;
+        text-align: center;
+        background-image: url('../graphics/bluestar.gif');
+        background-size: 100% 100%;
+    }
+    
+    .wrapper {
+        width: 960px;
+        margin: 0 auto;
+        background-color: darkblue;
+    }
+    
+    .display {
+        width: 95%;
+        font-family: Milonga;
+        font-size: 20px;
+        color: white;
+        background-color: blue;
+        text-align: center;
+        margin: 0px auto 30px auto;
+        border: lightblue 3px dotted;
+        padding: 10px;
+    }
+    
+    h1 {
+        color: yellow;
+    }
+    
+    #startBtn {}
+    
+    .respBtn {
+        width: 75%;
+    }
+    
+    .resp {
+        width: 25%;
+        float: left;
+        margin: auto;
+    }
+    
+    #displayQuestion {
+        height: 150px;
+    }
+    
+    #displayTimer {}
+    
+    #displayResponses {
+        height: 72px;
+        clear: both;
+    }
+    
+    #displayGraphic {
+        width: 25%;
+        display: block;
+        margin: 25px auto;
+    }
+    </style>
